@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boba| Akua's Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--Header / Navbar-->
+  
+    <header>
+        
+        <nav class="navbar section-content">
+            <a href="#" class="nav-logo">
+                <h2 class="logo-text">🧋Boba</h2>
+            </a>
+
+            <!-- Hamburger button for mobile -->
+            <!-- <button class="hamburger-btn" id="hamburger-btn">
+                <span class="bar">Home</span>
+                <span class="bar">About</span>
+                <span class="bar">Contact Us</span>
+                <span class="bar">Menu</span>
+                <span class="bar">Testimonials</span>
+            </button> -->
+
+            <ul class="nav-menu" id="nav-menu">
+
+                <li><button id="menu-close-button" class="fas fa-times"></button></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#testimonials" class="nav-link">Our Happy Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--Hero section-->
+        <section class="hero-section">
+            <div class="section-content">
+                <div class="hero-details">
+                    <h2 class="title">BobaTea Ghana</h2>
+                    <h3 class="subtitle">Make each day great with our special teas!</h3>
+                    <p class="description">Welcome to our boba paradise, where every tea tells a story and every cup sparks joy!</p>
+
+                    <div class="buttons">
+                        <a href="#" class="button order-now">Order Now</a>
+                        <a href="#" class="button contact-us">Contact Us</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="images/cleartea.png" alt="Hero" class="hero-image">
+                </div>
+            </div>
+        </section>
+        <section class="about-section" id="about">
+            <div class="section-content">
+                <div class="about-image-wrapper">
+                    <img src="images\about-us.jpg" alt="About" class="about-image">
+                </div>
+                <div class="about-details">
+                    <h2 class="section-title">About Us</h2>
+                    <p class="text"> We are a passionate team of boba lovers who believe every cup should tell a story. Born out of a love for bold flavors and good vibes, our shop brings you handcrafted teas made with the freshest ingredients ,  because you deserve nothing less.  From classic milk teas to fruity blends, every sip is made with care, creativity, 
+                and a whole lot of love. Come as you are, stay for the boba.</p>
+                <div class="class social-link-list">
+                    <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                </div>
+            </div>
+
+        </section>
+        <section class ="menu-section" id="menu">
+            <h2 class="section-title"> Our Menu</h2>
+            <div class="section-content">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <img src="images\milktea.avif" alt="Milk Tea" class="menu-image">
+                        <h3 class="name"> Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                    <li class="menu-item">
+                        <img src="images\strawberry.webp" alt="Strawberry Milk" class="menu-image">
+                        <h3 class="name">Strawberry Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                    <li class="menu-item">
+                        <img src="images\matcha.webp" alt="Matcha Milk" class="menu-image">
+                        <h3 class="name">Matcha Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                    <li class="menu-item">
+                        <img src="images\brownsugar.avif" alt="Brown Sugar Milk" class="menu-image">
+                        <h3 class="name">Brown Sugar Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                    <li class="menu-item">
+                        <img src="images\choco.avif" alt="Choco Milk" class="menu-image">
+                        <h3 class="name">Choco Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                    <li class="menu-item">
+                        <img src="images\StrawberryCheese.avif" alt="StawberryCheese Milk" class="menu-image">
+                        <h3 class="name">StrawberryCheese Milk Tea</h3>        
+                        <p class="text"> Wide range of tapioca blend mix to make you fresh and light</p>       
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!--testimonials section-->
+        <section class="testimonials-section" id="testimonials">
+            <h2 class="section-title">Our Happy Customers</h2>
+            <div class="section-content">
+                <div class="slider-container swiper">
+                    <div class="slider-wrapper">
+                        <ul class="testimonials-list swiper-wrapper">
+                            <li class="testimonial swiper-slide">
+                                <img src="images\user1.jpg" alt="User" class="user-image">
+                                <h3 class="name">Sarah Johnson</h3>
+                                <i class="feedback">Loved the matcha milk! Will order again!!</i>
+                            </li>
+                            <li class="testimonial swiper-slide">
+                                <img src="images\user2.avif" alt="User" class="user-image">
+                                <h3 class="name">Johanna Osei Johnson</h3>
+                                <i class="feedback">Loved the Strawbery milk! Will order again!!</i>
+                            </li>
+                            <li class="testimonial swiper-slide">
+                                <img src="images\user3.jpg" alt="User" class="user-image">
+                                <h3 class="name">Caleb Johnson</h3>
+                                <i class="feedback">Loved the matcha milk! Will order again!!</i>
+                            </li>
+                            <li class="testimonial swiper-slide">
+                                <img src="images\user4.avif" alt="User" class="user-image">
+                                <h3 class="name">Yasmine Johnson</h3>
+                                <i class="feedback">Loved the matcha milk! Will order again!!</i>
+                            </li>
+                        </ul>
+
+                         <div class="swiper-pagination"></div>
+                         <div class="swiper-slide-button 
+                         swiper-button-prev"></div>
+                         <div class="swiper-slide-button 
+                         swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+
+        
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h3 class="section-title">Contact Us</h3>
+            <div class="section-content">
+                <ul class="contact-info-list">
+                    <li class="contact-info">
+                        <i class="fa-solid fa-location-crosshairs"></i>
+                        <p>123 Campsite Avenue, Widerness, GH 98392</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>@info@ghbobawebsite.com</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>054781932</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-clock"></i>
+                        <p>Monday - Friday : 9:00 AM - 5:00 PM</p>
+                    </li>
+                    <li class="contact-info">
+                        <i class="fa-solid fa-clock"></i>
+                        <p>Sunday: Closed</p>
+                    </li>
+                     <li class="contact-info">
+                        <i class="fa-solid fa-globe"></i>
+                        <p>www.ghbobaweb.com</p>
+                    </li>
+                </ul>
+
+                <form action="" class="contact-form">
+                    <input type="text" placeholder="Your Name" class="form-input" 
+                    required >
+                    <input type="email" placeholder="Your Email" class="form-input"
+                     required>
+                    <textarea  placeholder="Your message" class="form-input" 
+                    required></textarea>
+                    <button class="submit-button">Submit</button>
+                </form>
+            </div>
+
+        </section>
+        <!--Footer section-->
+        <footer class="footer-section">
+            <div class="section-content">
+                <p class="copyright-text">© 2025 Boba. All Rights Reserved.</p>
+                <div class="social-link-list">
+                    <div class="social-link-list">
+                    <a href="#" class="social-link"><i class="fa-brands 
+                        fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands 
+                        fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fa-brands 
+                        fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <p class="policy-text">
+                    <a href="#" class="policy-link">Privacy policy</a>
+                    <span class="separator"> * </span>
+                    <a href="#" class="policy-link">Refund Policy</a>
+
+                </p>
+
+                </div>
+            </div>
+
+        </footer>
+    
+    </main>
+
+    
+
+
+<!--Linking swiper script-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<!--Linking custom script-->
+    <script src="script.js"></script>
+</body>
+</html>
