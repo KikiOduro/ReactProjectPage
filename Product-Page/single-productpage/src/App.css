@@ -116,7 +116,8 @@ body {
 .quantity-label {
   font-size: 14px;
   margin-bottom: 8px;
-  color: #333;
+  color: #170925;
+  font-weight: bold;
 }
 
 .quantity-controls {
@@ -356,7 +357,7 @@ body {
 .selector-label {
   font-size: 12px;
   font-weight: bold;
-  color: #666;
+  color: #0d0c2d;
   letter-spacing: 0.5px;
 }
 

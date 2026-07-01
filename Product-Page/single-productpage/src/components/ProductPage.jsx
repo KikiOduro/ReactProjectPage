@@ -3,7 +3,6 @@ import Header from "./Header";
 import ProductDetails from "./ProductDetails";
 import QuantitySelector from "./QuantitySelector";
 import AddToCartButton from "./AddToCartButton";
-import CartSummary from "./CartSummary";
 import CartModal from "./CartModal";
 import sneakerImage from "../assets/single-product-removebg-preview.png";
 
@@ -11,13 +10,13 @@ function ProductPage() {
   const product = {
     id: 1,
     name: "Onitsuka Tiger Tokuten Sneakers",
-    price: 50,
+    price: 500,
     originalPrice: 65,
     rating: 4.6,
     reviewCount: 18,
     description: "Comfortable everyday shoes perfect for any occasion.",
     image: sneakerImage,
-    colors: ["#1a1a1a", "#e8e0d5", "#7a1f3d"],
+    colors: ["#1a1a1a", "#e8e0d5", "#7a1f3d", "#ed7220"],
     sizes: [8, 9, 10, 11, 12],
   };
 
