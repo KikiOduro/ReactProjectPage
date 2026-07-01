@@ -10,7 +10,7 @@ import sneakerImage from "../assets/single-product-removebg-preview.png";
 function ProductPage() {
   const product = {
     id: 1,
-    name: "Basic Sneakers",
+    name: "Onitsuka Tiger Tokuten Sneakers",
     price: 50,
     originalPrice: 65,
     rating: 4.6,
@@ -206,7 +206,7 @@ function ProductPage() {
           </div>
         </div>
 
-        <CartSummary itemCount={totalItemCount} total={cartTotal} />
+        {/* <CartSummary itemCount={totalItemCount} total={cartTotal} /> */}
       </div>
 
       <CartModal

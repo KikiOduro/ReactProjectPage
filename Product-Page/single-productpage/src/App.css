@@ -92,11 +92,13 @@ body {
 .product-name {
   font-size: 28px;
   margin-bottom: 10px;
+  color: #202226;
+
 }
 
 .product-price {
   font-size: 22px;
-  color: #1a56db;
+  color: #202226;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -150,7 +152,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #1a56db;
+  background-color: #1a1c1f;
   border: none;
   border-radius: 8px;
   cursor: pointer;
