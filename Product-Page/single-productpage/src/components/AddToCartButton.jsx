@@ -6,7 +6,6 @@ function AddToCartButton(props) {
       <button onClick={props.onAddToCart} className="add-to-cart-button">
         Add to Cart
       </button>
-
       {props.showConfirmation === true && (
         <p className="confirmation-text">Item added to cart!</p>
       )}
@@ -15,3 +14,4 @@ function AddToCartButton(props) {
 }
 
 export default AddToCartButton;
+

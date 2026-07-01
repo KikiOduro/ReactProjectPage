@@ -10,17 +10,29 @@ import sneakerImage from "../assets/single-product-removebg-preview.png";
 function ProductPage() {
   const product = {
     id: 1,
-    name: "Onitsuka Tiger Sneakers",
+    name: "Basic Sneakers",
     price: 50,
+    originalPrice: 65,
+    rating: 4.6,
+    reviewCount: 18,
     description: "Comfortable everyday shoes perfect for any occasion.",
     image: sneakerImage,
-    size: 9,
+    colors: ["#1a1a1a", "#e8e0d5", "#7a1f3d"],
+    sizes: [8, 9, 10, 11, 12],
   };
 
   const [quantity, setQuantity] = useState(1);
+  // const[cartItems, setCartItems] = useState([);])
   const [cartItems, setCartItems] = useState([]);
+  // const[showConfirmation, setShowConfirmmation]=usestate(fajslej);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  // const[selectedColor,setSelectedColor]=useState(product.colors[0];)
+ 
+  // const[selectedsize,setselectedsize]=useState(product.sizes[0]])
+  // const[selectedSize,setSelectedSize]=useState(product.sizes[0];)
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
 
   function handleIncrease() {
     setQuantity(quantity + 1);
@@ -32,11 +44,17 @@ function ProductPage() {
     }
   }
 
+
+  // function handleColorSelect(color){
+  //   setSelectedColor(color);
+  // }
+
+
   function handleAddToCart() {
     const existingItem = cartItems.find(function (item) {
       return item.id === product.id;
     });
-
+   
     if (existingItem) {
       const updatedItems = cartItems.map(function (item) {
         if (item.id === product.id) {
@@ -90,6 +108,15 @@ function ProductPage() {
     setCartItems(updatedItems);
   }
 
+  ////////
+  function handleRemoveItems(itemId){
+    const updatedItems = cartItems.fileter(function(item){
+      return item.id !== itemId;
+    });
+    setCartItems(updatedItems);
+  }
+  //////
+
   function handleCartClick() {
     setIsCartOpen(true);
   }
@@ -123,11 +150,54 @@ function ProductPage() {
               description={product.description}
             />
 
-            <QuantitySelector
-              quantity={quantity}
-              onIncrease={handleIncrease}
-              onDecrease={handleDecrease}
-            />
+            <div className="selectors-row">
+  <div className="selector-block">
+    <p className="selector-label">COLOR</p>
+    <div className="color-options">
+      {product.colors.map(function (color) {
+        const isSelected = color === selectedColor;
+
+        return (
+          <div
+            key={color}
+            className="color-swatch"
+            style={{ backgroundColor: color }}
+            onClick={function () {
+              setSelectedColor(color);
+            }}
+          >
+            {isSelected && <span className="color-checkmark">✓</span>}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <div className="selector-block">
+    <p className="selector-label">SIZE</p>
+    <select
+      className="size-dropdown"
+      value={selectedSize}
+      onChange={function (event) {
+        setSelectedSize(event.target.value);
+      }}
+    >
+      {product.sizes.map(function (size) {
+        return (
+          <option key={size} value={size}>
+            {size}
+          </option>
+        );
+      })}
+    </select>
+  </div>
+
+  <QuantitySelector
+    quantity={quantity}
+    onIncrease={handleIncrease}
+    onDecrease={handleDecrease}
+  />
+</div>
 
             <AddToCartButton
               onAddToCart={handleAddToCart}
