@@ -1,0 +1,394 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  font-family: tahoma, sans-serif;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #1a56db;
+}
+
+.logo {
+  color: #151b29;
+  margin: 0;
+}
+
+.cart-icon-container {
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.cart-icon {
+  font-size: 24px;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  color: #000;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/*Product Page*/
+.page-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.details-container {
+  flex: 1;
+  min-width: 280px;
+}
+
+/*Product Image*/
+.image-container {
+  flex: 1;
+  min-width: 280px;
+}
+
+.product-image {
+  width: 80%;
+  /* border-radius: 8px;
+  border: 1px solid #ddd; */
+}
+
+/*roduct Details Section */
+.details-block {
+  margin-bottom: 20px;
+}
+
+.product-name {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #202226;
+
+}
+
+.product-price {
+  font-size: 22px;
+  color: #202226;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+}
+
+/*Quantity Selector Section*/
+.quantity-container {
+  margin-bottom: 20px;
+}
+
+.quantity-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #170925;
+  font-weight: bold;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity-button {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.quantity-value {
+  font-size: 18px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Add to Cart Button Section*/
+.add-to-cart-container {
+  margin-bottom: 20px;
+}
+
+.add-to-cart-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1a1c1f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.confirmation-text {
+  margin-top: 10px;
+  color: rgb(18, 18, 18);
+  font-weight: bold;
+}
+
+/* ===== Cart Summary Section */
+.cart-summary-container {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #504c4c;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.cart-summary-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* ===== Cart Modal ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(165, 159, 159, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-close-button {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.modal-items-container {
+  padding: 20px;
+}
+
+.modal-empty-text {
+  text-align: center;
+  color: #777;
+}
+
+.modal-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.modal-item-details {
+  flex: 1;
+}
+
+.modal-item-name {
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.modal-item-size {
+  color: #777;
+  margin: 0 0 10px 0;
+}
+
+.modal-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-quantity-button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.modal-quantity-value {
+  min-width: 15px;
+  text-align: center;
+}
+
+.modal-item-right {
+  text-align: right;
+}
+
+.modal-item-price {
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.modal-remove-button {
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-summary {
+  padding: 20px;
+  background-color: #f5f7ff;
+}
+
+.modal-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.modal-free-text {
+  color: green;
+}
+
+.modal-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+  padding-top: 10px;
+  border-top: 1px dashed #ccc;
+}
+
+.modal-total-value {
+  color: #1a56db;
+}
+
+.modal-checkout-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1a56db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-continue-shopping {
+  text-align: center;
+  color: #1a56db;
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* ===== Selectors row (color / size / quantity) ===== */
+.selectors-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.selector-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selector-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #0d0c2d;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Color swatches ===== */
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-checkmark {
+  color: #fff;
+  font-size: 14px;
+}
+
+/* ===== Size dropdown ===== */
+.size-dropdown {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
