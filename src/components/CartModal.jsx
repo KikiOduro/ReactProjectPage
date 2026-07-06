@@ -77,7 +77,7 @@ function CartModal(props) {
             );
           })}
         </div>
-
+//shows the summary
         {props.cartItems.length > 0 && (
           <div className="modal-summary">
             <div className="modal-summary-row">
