@@ -13,7 +13,7 @@ function HomePage(props) {
   const products = [
     {
       id: 1,
-      name: "Basic Running Shoe, white / navy",
+      name: "Nike Moon Shoe",
       price: 69.99,
       image: "https://i.pinimg.com/1200x/9a/2c/c8/9a2cc826db9ea637a87ae0af2021af47.jpg",
       description: "Lightweight everyday pair with a clean silhouette.",
@@ -24,7 +24,7 @@ function HomePage(props) {
     },
     {
       id: 2,
-      name: "Classic Sneaker, black / white",
+      name: "New Balance 9060, black",
       price: 69.99,
       image: "https://i.pinimg.com/1200x/37/69/6c/37696c53a790783775eca6bca6c5fe72.jpg",
       description: "Minimal profile with a flexible sole and soft lining.",
@@ -35,7 +35,7 @@ function HomePage(props) {
     },
     {
       id: 3,
-      name: "Trail Runner, grey / green",
+      name: "Atreyu Trail Base",
       price: 120.0,
       image: "https://i.pinimg.com/1200x/2a/0c/d1/2a0cd10c8e1789bb4a98c232498c93af.jpg",
       description: "Built for extra grip and comfort on longer walks.",
@@ -46,7 +46,7 @@ function HomePage(props) {
     },
     {
       id: 4,
-      name: "High Top Sneaker, cream",
+      name: "Aimé Leon Dore x New Balance Gator Cream",
       price: 120.0,
       image: "https://i.pinimg.com/1200x/62/7d/42/627d425dfc14fa9e108b8fc2f90140b3.jpg",
       description: "A taller profile with a retro streetwear look.",
@@ -57,7 +57,7 @@ function HomePage(props) {
     },
     {
       id: 5,
-      name: "Slip-On Loafer, navy",
+      name: "Blackstone Yana Lamon DG374 Navy",
       price: 55.0,
       image: "https://i.pinimg.com/736x/e9/41/29/e94129bc5dd5429f2b15e52a7f97fb9f.jpg",
       description: "Easy slip-on style made for casual daily wear.",
@@ -68,7 +68,7 @@ function HomePage(props) {
     },
     {
       id: 6,
-      name: "Canvas Sneaker, denim blue",
+      name: " Anthony Wang QUINCE 02 Cyber Storm White",
       price: 120.0,
       image: "https://i.pinimg.com/736x/f4/b1/6e/f4b16e2b9b3fe5370d25e914a48917d4.jpg",
       description: "Breathable canvas upper with a relaxed fit.",
@@ -79,7 +79,7 @@ function HomePage(props) {
     },
     {
       id: 7,
-      name: "Platform Sneaker, white",
+      name: "New Balance 990v5, white",
       price: 60.0,
       image: "https://i.pinimg.com/736x/d8/01/3b/d8013b5be86dd72e652f3cfd327e7c7c.jpg",
       description: "A lifted sole that keeps the look clean and modern.",
@@ -90,7 +90,7 @@ function HomePage(props) {
     },
     {
       id: 8,
-      name: "Retro Sneaker, multi",
+      name: "Retro Kicks NYC",
       price: 130.0,
       image: "https://i.pinimg.com/1200x/e3/62/59/e36259826e6b8e1a349562d30b691b56.jpg",
       description: "Color-blocked design with a vintage-inspired profile.",
