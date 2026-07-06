@@ -21,17 +21,30 @@ function ProductPage() {
   };
 
   const [quantity, setQuantity] = useState(1);
-  // const[cartItems, setCartItems] = useState([);])
   const [cartItems, setCartItems] = useState([]);
-  // const[showConfirmation, setShowConfirmmation]=usestate(fajslej);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  // const[selectedColor,setSelectedColor]=useState(product.colors[0];)
- 
-  // const[selectedsize,setselectedsize]=useState(product.sizes[0]])
-  // const[selectedSize,setSelectedSize]=useState(product.sizes[0];)
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [reviews, setReviews] = useState([
+    {
+      id: 1,
+      name: "Alicia",
+      rating: 5,
+      comment: "Comfortable fit and the design looks clean in person.",
+      date: "2 days ago",
+    },
+    {
+      id: 2,
+      name: "Marcus",
+      rating: 4,
+      comment: "Great everyday sneaker. I would size up if you like extra room.",
+      date: "1 week ago",
+    },
+  ]);
+  const [reviewName, setReviewName] = useState("");
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewText, setReviewText] = useState("");
 
   function handleIncrease() {
     setQuantity(quantity + 1);
@@ -44,19 +57,15 @@ function ProductPage() {
   }
 
 
-  // function handleColorSelect(color){
-  //   setSelectedColor(color);
-  // }
-
 
   function handleAddToCart() {
     const existingItem = cartItems.find(function (item) {
-      return item.id === product.id;
+      return item.id === product.id && item.size === selectedSize;
     });
    
     if (existingItem) {
       const updatedItems = cartItems.map(function (item) {
-        if (item.id === product.id) {
+        if (item.id === product.id && item.size === selectedSize) {
           return { ...item, quantity: item.quantity + quantity };
         }
         return item;
@@ -68,7 +77,7 @@ function ProductPage() {
         name: product.name,
         price: product.price,
         image: product.image,
-        size: product.size,
+        size: selectedSize,
         quantity: quantity,
       };
       setCartItems([...cartItems, newItem]);
@@ -107,14 +116,34 @@ function ProductPage() {
     setCartItems(updatedItems);
   }
 
-  ////////
-  function handleRemoveItems(itemId){
-    const updatedItems = cartItems.fileter(function(item){
-      return item.id !== itemId;
+  function handleSubmitReview(event) {
+    event.preventDefault();
+
+    if (reviewText.trim() === "") {
+      return;
+    }
+
+    const newReview = {
+      id: Date.now(),
+      name: reviewName.trim() === "" ? "Guest" : reviewName.trim(),
+      rating: reviewRating,
+      comment: reviewText.trim(),
+      date: "Just now",
+    };
+
+    setReviews(function (currentReviews) {
+      return [newReview, ...currentReviews];
     });
-    setCartItems(updatedItems);
+    setReviewName("");
+    setReviewRating(5);
+    setReviewText("");
   }
-  //////
+
+  function renderRatingStars(value) {
+    return Array.from({ length: 5 }, function (_, index) {
+      return index < value ? "★" : "☆";
+    }).join("");
+  }
 
   function handleCartClick() {
     setIsCartOpen(true);
@@ -147,56 +176,58 @@ function ProductPage() {
               name={product.name}
               price={product.price}
               description={product.description}
+              rating={product.rating}
+              reviewCount={product.reviewCount}
             />
 
             <div className="selectors-row">
-  <div className="selector-block">
-    <p className="selector-label">COLOR</p>
-    <div className="color-options">
-      {product.colors.map(function (color) {
-        const isSelected = color === selectedColor;
+              <div className="selector-block">
+                <p className="selector-label">COLOR</p>
+                <div className="color-options">
+                  {product.colors.map(function (color) {
+                    const isSelected = color === selectedColor;
 
-        return (
-          <div
-            key={color}
-            className="color-swatch"
-            style={{ backgroundColor: color }}
-            onClick={function () {
-              setSelectedColor(color);
-            }}
-          >
-            {isSelected && <span className="color-checkmark">✓</span>}
-          </div>
-        );
-      })}
-    </div>
-  </div>
+                    return (
+                      <div
+                        key={color}
+                        className="color-swatch"
+                        style={{ backgroundColor: color }}
+                        onClick={function () {
+                          setSelectedColor(color);
+                        }}
+                      >
+                        {isSelected && <span className="color-checkmark">✓</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-  <div className="selector-block">
-    <p className="selector-label">SIZE</p>
-    <select
-      className="size-dropdown"
-      value={selectedSize}
-      onChange={function (event) {
-        setSelectedSize(event.target.value);
-      }}
-    >
-      {product.sizes.map(function (size) {
-        return (
-          <option key={size} value={size}>
-            {size}
-          </option>
-        );
-      })}
-    </select>
-  </div>
+              <div className="selector-block">
+                <p className="selector-label">SIZE</p>
+                <select
+                  className="size-dropdown"
+                  value={selectedSize}
+                  onChange={function (event) {
+                    setSelectedSize(event.target.value);
+                  }}
+                >
+                  {product.sizes.map(function (size) {
+                    return (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
 
-  <QuantitySelector
-    quantity={quantity}
-    onIncrease={handleIncrease}
-    onDecrease={handleDecrease}
-  />
-</div>
+              <QuantitySelector
+                quantity={quantity}
+                onIncrease={handleIncrease}
+                onDecrease={handleDecrease}
+              />
+            </div>
 
             <AddToCartButton
               onAddToCart={handleAddToCart}
@@ -204,6 +235,101 @@ function ProductPage() {
             />
           </div>
         </div>
+
+        <section className="reviews-section">
+          <div className="reviews-section-header">
+            <h2 className="reviews-title">Customer Reviews</h2>
+            <p className="reviews-subtitle">
+              Read feedback or add your own review below.
+            </p>
+          </div>
+
+          <div className="reviews-layout">
+            <div className="reviews-panel reviews-list-panel">
+              <h3 className="reviews-panel-title">Past Reviews</h3>
+              <div className="reviews-list">
+                {reviews.map(function (review) {
+                  return (
+                    <article key={review.id} className="review-card">
+                      <div className="review-card-header">
+                        <strong>{review.name}</strong>
+                        <span className="review-date">{review.date}</span>
+                      </div>
+                      <div
+                        className="review-stars"
+                        aria-label={`Rated ${review.rating} out of 5`}
+                      >
+                        {renderRatingStars(review.rating)}
+                      </div>
+                      <p className="review-comment">{review.comment}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="reviews-panel review-form-panel">
+              <h3 className="reviews-panel-title">Write a Review</h3>
+              <form className="review-form" onSubmit={handleSubmitReview}>
+                <label className="review-field">
+                  <span>Name</span>
+                  <input
+                    type="text"
+                    value={reviewName}
+                    onChange={function (event) {
+                      setReviewName(event.target.value);
+                    }}
+                    placeholder="Your name"
+                  />
+                </label>
+
+                <div className="review-field">
+                  <span>Rating</span>
+                  <div
+                    className="review-star-input"
+                    role="radiogroup"
+                    aria-label="Choose a rating"
+                  >
+                    {Array.from({ length: 5 }, function (_, index) {
+                      const value = index + 1;
+                      const isSelected = value <= reviewRating;
+
+                      return (
+                        <button
+                          key={value}
+                          type="button"
+                          className={`review-star-button${isSelected ? " is-selected" : ""}`}
+                          onClick={function () {
+                            setReviewRating(value);
+                          }}
+                          aria-label={`${value} star${value > 1 ? "s" : ""}`}
+                        >
+                          ★
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <label className="review-field review-textarea-field">
+                  <span>Your review</span>
+                  <textarea
+                    value={reviewText}
+                    onChange={function (event) {
+                      setReviewText(event.target.value);
+                    }}
+                    placeholder="Tell us what you think about this product"
+                    rows="5"
+                  />
+                </label>
+
+                <button type="submit" className="review-submit-button">
+                  Post Review
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
 
         {/* <CartSummary itemCount={totalItemCount} total={cartTotal} /> */}
       </div>
