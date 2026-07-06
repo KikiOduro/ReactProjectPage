@@ -3,11 +3,10 @@ import Header from "./Header";
 import ProductDetails from "./ProductDetails";
 import QuantitySelector from "./QuantitySelector";
 import AddToCartButton from "./AddToCartButton";
-import CartModal from "./CartModal";
 import sneakerImage from "../assets/single-product-removebg-preview.png";
 
-function ProductPage() {
-  const product = {
+function ProductPage(props) {
+  const defaultProduct = {
     id: 1,
     name: "Onitsuka Tiger Tokuten Sneakers",
     price: 500,
@@ -19,19 +18,20 @@ function ProductPage() {
     colors: ["#1a1a1a", "#e8e0d5", "#7a1f3d", "#ed7220"],
     sizes: [8, 9, 10, 11, 12],
   };
+  const product = props.product || defaultProduct;
+  const productColors = product.colors || defaultProduct.colors;
+  const productSizes = product.sizes || defaultProduct.sizes;
+  const productRating = product.rating || defaultProduct.rating;
+  const productReviewCount = product.reviewCount || defaultProduct.reviewCount;
+  const productDescription = product.description || defaultProduct.description;
+  const productImage = product.image || defaultProduct.image;
+  const productName = product.name || defaultProduct.name;
+  const productPrice = product.price || defaultProduct.price;
 
   const [quantity, setQuantity] = useState(1);
-  // const[cartItems, setCartItems] = useState([);])
-  const [cartItems, setCartItems] = useState([]);
-  // const[showConfirmation, setShowConfirmmation]=usestate(fajslej);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  // const[selectedColor,setSelectedColor]=useState(product.colors[0];)
- 
-  // const[selectedsize,setselectedsize]=useState(product.sizes[0]])
-  // const[selectedSize,setSelectedSize]=useState(product.sizes[0];)
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedColor, setSelectedColor] = useState(productColors[0]);
+  const [selectedSize, setSelectedSize] = useState(productSizes[0]);
 
   function handleIncrease() {
     setQuantity(quantity + 1);
@@ -50,29 +50,15 @@ function ProductPage() {
 
 
   function handleAddToCart() {
-    const existingItem = cartItems.find(function (item) {
-      return item.id === product.id;
+    props.onAddToCart({
+      key: `${product.id}-${selectedSize}`,
+      id: product.id,
+      name: productName,
+      price: productPrice,
+      image: productImage,
+      size: selectedSize,
+      quantity: quantity,
     });
-   
-    if (existingItem) {
-      const updatedItems = cartItems.map(function (item) {
-        if (item.id === product.id) {
-          return { ...item, quantity: item.quantity + quantity };
-        }
-        return item;
-      });
-      setCartItems(updatedItems);
-    } else {
-      const newItem = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        size: product.size,
-        quantity: quantity,
-      };
-      setCartItems([...cartItems, newItem]);
-    }
 
     setShowConfirmation(true);
     setTimeout(function () {
@@ -80,80 +66,41 @@ function ProductPage() {
     }, 2000);
   }
 
-  function handleIncreaseItem(itemId) {
-    const updatedItems = cartItems.map(function (item) {
-      if (item.id === itemId) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-      return item;
-    });
-    setCartItems(updatedItems);
-  }
-
-  function handleDecreaseItem(itemId) {
-    const updatedItems = cartItems.map(function (item) {
-      if (item.id === itemId && item.quantity > 1) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-      return item;
-    });
-    setCartItems(updatedItems);
-  }
-
-  function handleRemoveItem(itemId) {
-    const updatedItems = cartItems.filter(function (item) {
-      return item.id !== itemId;
-    });
-    setCartItems(updatedItems);
-  }
-
-  ////////
-  function handleRemoveItems(itemId){
-    const updatedItems = cartItems.fileter(function(item){
-      return item.id !== itemId;
-    });
-    setCartItems(updatedItems);
-  }
-  //////
-
-  function handleCartClick() {
-    setIsCartOpen(true);
-  }
-
-  function handleCloseCart() {
-    setIsCartOpen(false);
-  }
-
-  const totalItemCount = cartItems.reduce(function (total, item) {
-    return total + item.quantity;
-  }, 0);
-
-  const cartTotal = cartItems.reduce(function (total, item) {
-    return total + item.price * item.quantity;
-  }, 0);
+  const totalItemCount = props.cartItemCount || 0;
 
   return (
     <div>
-      <Header itemCount={totalItemCount} onCartClick={handleCartClick} />
+      <Header
+        itemCount={totalItemCount}
+        onHomeClick={props.onHomeClick}
+        onProductsClick={props.onProductsClick}
+        onCartClick={props.onCartClick}
+      />
 
       <div className="page-container">
+        <button type="button" className="back-to-home-button" onClick={props.onBackToHome}>
+          ← Back to products
+        </button>
+
         <div className="product-container">
           <div className="image-container">
-            <img src={product.image} alt="Product" className="product-image" />
+            <img src={productImage} alt={productName} className="product-image" />
           </div>
 
           <div className="details-container">
             <ProductDetails
-              name={product.name}
-              price={product.price}
-              description={product.description}
+              name={productName}
+              price={productPrice}
+              description={productDescription}
+              rating={productRating}
+              reviewCount={productReviewCount}
             />
 
             <div className="selectors-row">
   <div className="selector-block">
     <p className="selector-label">COLOR</p>
     <div className="color-options">
-      {product.colors.map(function (color) {
+      {productColors.map(function (color) {
         const isSelected = color === selectedColor;
 
         return (
@@ -181,7 +128,7 @@ function ProductPage() {
         setSelectedSize(event.target.value);
       }}
     >
-      {product.sizes.map(function (size) {
+      {productSizes.map(function (size) {
         return (
           <option key={size} value={size}>
             {size}
@@ -208,14 +155,6 @@ function ProductPage() {
         {/* <CartSummary itemCount={totalItemCount} total={cartTotal} /> */}
       </div>
 
-      <CartModal
-        isOpen={isCartOpen}
-        cartItems={cartItems}
-        onClose={handleCloseCart}
-        onIncreaseItem={handleIncreaseItem}
-        onDecreaseItem={handleDecreaseItem}
-        onRemoveItem={handleRemoveItem}
-      />
     </div>
   );
 }

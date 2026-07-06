@@ -26,7 +26,7 @@ function CartModal(props) {
 
           {props.cartItems.map(function (item) {
             return (
-              <div key={item.id} className="modal-item">
+              <div key={item.key} className="modal-item">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -41,7 +41,7 @@ function CartModal(props) {
                     <button
                       className="modal-quantity-button"
                       onClick={function () {
-                        props.onDecreaseItem(item.id);
+                        props.onDecreaseItem(item.key);
                       }}
                     >
                       -
@@ -52,7 +52,7 @@ function CartModal(props) {
                     <button
                       className="modal-quantity-button"
                       onClick={function () {
-                        props.onIncreaseItem(item.id);
+                        props.onIncreaseItem(item.key);
                       }}
                     >
                       +
@@ -67,7 +67,7 @@ function CartModal(props) {
                   <span
                     className="modal-remove-button"
                     onClick={function () {
-                      props.onRemoveItem(item.id);
+                      props.onRemoveItem(item.key);
                     }}
                   >
                     🗑 Remove
@@ -77,7 +77,7 @@ function CartModal(props) {
             );
           })}
         </div>
-//shows the summary
+         
         {props.cartItems.length > 0 && (
           <div className="modal-summary">
             <div className="modal-summary-row">
