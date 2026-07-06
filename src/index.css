@@ -59,6 +59,10 @@ body {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
+<<<<<<< HEAD
+=======
+  border-inline: 1px solid var(--border);
+>>>>>>> 435eb497467eddc027d47e83f415f7d396e44a7a
   min-height: 100svh;
   display: flex;
   flex-direction: column;
