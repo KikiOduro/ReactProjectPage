@@ -15,11 +15,8 @@ function Header(props) {
         >
           Products
         </button>
-        <button type="button" className="nav-link nav-link-muted" disabled>
+        <button type="button" className="nav-link" onClick={props.onContactClick}>
           Contact
-        </button>
-        <button type="button" className="nav-link" onClick={function () {}}>
-          Shop
         </button>
         <button type="button" className="nav-link" onClick={props.onCartClick}>
           Cart

@@ -9,6 +9,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [scrollToProducts, setScrollToProducts] = useState(false);
+  const [scrollToContact, setScrollToContact] = useState(false);
 
   function handleSelectProduct(product) {
     setSelectedProduct(product);
@@ -31,6 +32,16 @@ function App() {
 
   function handleProductsScrolled() {
     setScrollToProducts(false);
+  }
+
+  function handleContactClick() {
+    setSelectedProduct(null);
+    setScrollToProducts(false);
+    setScrollToContact(true);
+  }
+
+  function handleContactScrolled() {
+    setScrollToContact(false);
   }
 
   function handleCartClick() {
@@ -106,6 +117,7 @@ function App() {
           onBackToHome={handleBackToHome}
           onHomeClick={handleHomeClick}
           onProductsClick={handleProductsClick}
+          onContactClick={handleContactClick}
           onCartClick={handleCartClick}
           onAddToCart={handleAddToCart}
           cartItemCount={totalItemCount}
@@ -117,6 +129,9 @@ function App() {
           onProductsClick={handleProductsClick}
           onProductsScrolled={handleProductsScrolled}
           scrollToProducts={scrollToProducts}
+          onContactClick={handleContactClick}
+          onContactScrolled={handleContactScrolled}
+          scrollToContact={scrollToContact}
           onCartClick={handleCartClick}
           cartItemCount={totalItemCount}
         />

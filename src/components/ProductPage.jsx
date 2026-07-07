@@ -43,11 +43,9 @@ function ProductPage(props) {
     }
   }
 
-
   // function handleColorSelect(color){
   //   setSelectedColor(color);
   // }
-
 
   function handleAddToCart() {
     props.onAddToCart({
@@ -74,17 +72,26 @@ function ProductPage(props) {
         itemCount={totalItemCount}
         onHomeClick={props.onHomeClick}
         onProductsClick={props.onProductsClick}
+        onContactClick={props.onContactClick}
         onCartClick={props.onCartClick}
       />
 
       <div className="page-container">
-        <button type="button" className="back-to-home-button" onClick={props.onBackToHome}>
+        <button
+          type="button"
+          className="back-to-home-button"
+          onClick={props.onBackToHome}
+        >
           ← Back to products
         </button>
 
         <div className="product-container">
           <div className="image-container">
-            <img src={productImage} alt={productName} className="product-image" />
+            <img
+              src={productImage}
+              alt={productName}
+              className="product-image"
+            />
           </div>
 
           <div className="details-container">
@@ -97,53 +104,55 @@ function ProductPage(props) {
             />
 
             <div className="selectors-row">
-  <div className="selector-block">
-    <p className="selector-label">COLOR</p>
-    <div className="color-options">
-      {productColors.map(function (color) {
-        const isSelected = color === selectedColor;
+              <div className="selector-block">
+                <p className="selector-label">COLOR</p>
+                <div className="color-options">
+                  {productColors.map(function (color) {
+                    const isSelected = color === selectedColor;
 
-        return (
-          <div
-            key={color}
-            className="color-swatch"
-            style={{ backgroundColor: color }}
-            onClick={function () {
-              setSelectedColor(color);
-            }}
-          >
-            {isSelected && <span className="color-checkmark">✓</span>}
-          </div>
-        );
-      })}
-    </div>
-  </div>
+                    return (
+                      <div
+                        key={color}
+                        className="color-swatch"
+                        style={{ backgroundColor: color }}
+                        onClick={function () {
+                          setSelectedColor(color);
+                        }}
+                      >
+                        {isSelected && (
+                          <span className="color-checkmark">✓</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-  <div className="selector-block">
-    <p className="selector-label">SIZE</p>
-    <select
-      className="size-dropdown"
-      value={selectedSize}
-      onChange={function (event) {
-        setSelectedSize(event.target.value);
-      }}
-    >
-      {productSizes.map(function (size) {
-        return (
-          <option key={size} value={size}>
-            {size}
-          </option>
-        );
-      })}
-    </select>
-  </div>
+              <div className="selector-block">
+                <p className="selector-label">SIZE</p>
+                <select
+                  className="size-dropdown"
+                  value={selectedSize}
+                  onChange={function (event) {
+                    setSelectedSize(event.target.value);
+                  }}
+                >
+                  {productSizes.map(function (size) {
+                    return (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
 
-  <QuantitySelector
-    quantity={quantity}
-    onIncrease={handleIncrease}
-    onDecrease={handleDecrease}
-  />
-</div>
+              <QuantitySelector
+                quantity={quantity}
+                onIncrease={handleIncrease}
+                onDecrease={handleDecrease}
+              />
+            </div>
 
             <AddToCartButton
               onAddToCart={handleAddToCart}
@@ -154,7 +163,6 @@ function ProductPage(props) {
 
         {/* <CartSummary itemCount={totalItemCount} total={cartTotal} /> */}
       </div>
-
     </div>
   );
 }

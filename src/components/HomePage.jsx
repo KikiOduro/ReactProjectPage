@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import SafeImage from "./SafeImage";
 import heroImage from "../assets/Affiliates.jfif";
@@ -9,6 +8,7 @@ function HomePage(props) {
   const categories = ["Black", "White", "Green", "Blue", "Pink"];
   const [activeCategory, setActiveCategory] = useState("Black");
   const newArrivalsRef = useRef(null);
+  const contactRef = useRef(null);
 
   const products = [
     {
@@ -106,7 +106,14 @@ function HomePage(props) {
       newArrivalsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
       props.onProductsScrolled();
     }
-  }, [props.scrollToProducts, props]);
+  }, [props.scrollToProducts, props.onProductsScrolled]);
+
+  useEffect(function () {
+    if (props.scrollToContact && contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      props.onContactScrolled();
+    }
+  }, [props.scrollToContact, props.onContactScrolled]);
 
   return (
     <div>
@@ -114,6 +121,7 @@ function HomePage(props) {
         itemCount={props.cartItemCount || 0}
         onHomeClick={props.onHomeClick}
         onProductsClick={props.onProductsClick}
+        onContactClick={props.onContactClick}
         onCartClick={props.onCartClick}
       />
 
@@ -214,6 +222,31 @@ function HomePage(props) {
           </div>
         </div> */}
       </div>
+
+      <section className="contact-section" ref={contactRef}>
+        <div className="contact-section-inner">
+          <p className="contact-eyebrow">CONTACT</p>
+          <h2 className="contact-title">Get in touch</h2>
+          <p className="contact-copy">
+            Questions about sizing, shipping, or styling? Reach out and we will get back to you.
+          </p>
+
+          <div className="contact-grid">
+            <div className="contact-card">
+              <span className="contact-label">Email</span>
+              <span className="contact-value">support@walkwise.com</span>
+            </div>
+            <div className="contact-card">
+              <span className="contact-label">Phone</span>
+              <span className="contact-value">+1 (555) 012-3456</span>
+            </div>
+            <div className="contact-card">
+              <span className="contact-label">Hours</span>
+              <span className="contact-value">Mon - Fri, 9am - 5pm</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
