@@ -238,7 +238,7 @@ function HomePage(props) {
             </div>
             <div className="contact-card">
               <span className="contact-label">Phone</span>
-              <span className="contact-value">+1 (555) 012-3456</span>
+              <span className="contact-value">+(233) 012 234-3456</span>
             </div>
             <div className="contact-card">
               <span className="contact-label">Hours</span>
