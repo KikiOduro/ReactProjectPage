@@ -4,6 +4,8 @@ import ProductDetails from "./ProductDetails";
 import QuantitySelector from "./QuantitySelector";
 import AddToCartButton from "./AddToCartButton";
 import sneakerImage from "../assets/single-product-removebg-preview.png";
+import { useParams } from "react-router-dom";
+import { getProductById } from "../data/products";
 
 function ProductPage(props) {
   const defaultProduct = {
@@ -18,7 +20,9 @@ function ProductPage(props) {
     colors: ["#1a1a1a", "#e8e0d5", "#7a1f3d", "#ed7220"],
     sizes: [8, 9, 10, 11, 12],
   };
-  const product = props.product || defaultProduct;
+  const { productId } = useParams();
+  const routeProduct = getProductById(Number(productId));
+  const product = props.product || routeProduct || defaultProduct;
   const productColors = product.colors || defaultProduct.colors;
   const productSizes = product.sizes || defaultProduct.sizes;
   const productRating = product.rating || defaultProduct.rating;
@@ -36,17 +40,15 @@ function ProductPage(props) {
   function handleIncrease() {
     setQuantity(quantity + 1);
   }
-
+  
   function handleDecrease() {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   }
-
   // function handleColorSelect(color){
   //   setSelectedColor(color);
   // }
-
   function handleAddToCart() {
     props.onAddToCart({
       key: `${product.id}-${selectedSize}`,
@@ -82,7 +84,7 @@ function ProductPage(props) {
           className="back-to-home-button"
           onClick={props.onBackToHome}
         >
-          ← Back to products
+          ← Back to home
         </button>
 
         <div className="product-container">

@@ -59,7 +59,6 @@ function CartModal(props) {
                     </button>
                   </div>
                 </div>
-
                 <div className="modal-item-right">
                   <p className="modal-item-price">
                     ${(item.price * item.quantity).toFixed(2)}

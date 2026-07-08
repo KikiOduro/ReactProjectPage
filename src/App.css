@@ -139,6 +139,79 @@ body {
   font-weight: bold;
 }
 
+.cart-page {
+  min-height: 100svh;
+  background: #fafafa;
+}
+
+.cart-page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+.cart-page-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  color: #111827;
+}
+
+.cart-page-subtitle {
+  margin: 0 0 24px;
+  color: #64748b;
+}
+
+.cart-page-empty {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.cart-page-button {
+  margin-top: 16px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cart-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.cart-page-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-page-summary {
+  position: sticky;
+  top: 20px;
+}
+
+.cart-page-item {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+}
+
+.cart-page-item .modal-item-image {
+  width: 96px;
+  height: 96px;
+}
+
 /*Product Page*/
 .page-container {
   padding: 20px;
@@ -262,6 +335,16 @@ body {
 .cart-summary-title {
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 840px) {
+  .cart-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-page-summary {
+    position: static;
+  }
 }
 
 /* ===== Cart Modal ===== */
@@ -420,7 +503,7 @@ body {
 
 .modal-continue-shopping {
   text-align: center;
-  color: #1a56db;
+  color: #101a30;
   padding: 15px;
   cursor: pointer;
 }

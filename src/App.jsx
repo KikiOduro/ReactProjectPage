@@ -1,55 +1,38 @@
 import { useState } from "react";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import ProductPage from "./components/ProductPage";
-import CartModal from "./components/CartModal";
+import CartPage from "./components/CartPage";
 import "./App.css";
 
 function App() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [scrollToProducts, setScrollToProducts] = useState(false);
-  const [scrollToContact, setScrollToContact] = useState(false);
-
-  function handleSelectProduct(product) {
-    setSelectedProduct(product);
-  }
-
-  function handleBackToHome() {
-    setSelectedProduct(null);
-  }
+  const navigate = useNavigate();
+  const location = useLocation();
 
   function handleHomeClick() {
-    setSelectedProduct(null);
-    setScrollToProducts(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    navigate("/");
   }
 
   function handleProductsClick() {
-    setSelectedProduct(null);
-    setScrollToProducts(true);
+    navigate("/", { state: { scrollToProducts: true } });
   }
 
   function handleProductsScrolled() {
-    setScrollToProducts(false);
+    navigate("/", { replace: true });
   }
 
   function handleContactClick() {
-    setSelectedProduct(null);
-    setScrollToProducts(false);
-    setScrollToContact(true);
+    navigate("/", { state: { scrollToContact: true } });
   }
 
   function handleContactScrolled() {
-    setScrollToContact(false);
-  }
-
-  function handleCartClick() {
-    setIsCartOpen(true);
-  }
-
-  function handleCloseCart() {
-    setIsCartOpen(false);
+    navigate("/", { replace: true });
   }
 
   function handleAddToCart(newItem) {
@@ -111,40 +94,66 @@ function App() {
 
   return (
     <div className="App">
-      {selectedProduct ? (
-        <ProductPage
-          product={selectedProduct}
-          onBackToHome={handleBackToHome}
-          onHomeClick={handleHomeClick}
-          onProductsClick={handleProductsClick}
-          onContactClick={handleContactClick}
-          onCartClick={handleCartClick}
-          onAddToCart={handleAddToCart}
-          cartItemCount={totalItemCount}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              onSelectProduct={function (product) {
+                navigate(`/product/${product.id}`);
+              }}
+              onHomeClick={handleHomeClick}
+              onProductsClick={handleProductsClick}
+              onProductsScrolled={handleProductsScrolled}
+              scrollToProducts={location.state?.scrollToProducts === true}
+              onContactClick={handleContactClick}
+              onContactScrolled={handleContactScrolled}
+              scrollToContact={location.state?.scrollToContact === true}
+              onCartClick={function () {
+                navigate("/cart");
+              }}
+              cartItemCount={totalItemCount}
+            />
+          }
         />
-      ) : (
-        <HomePage
-          onSelectProduct={handleSelectProduct}
-          onHomeClick={handleHomeClick}
-          onProductsClick={handleProductsClick}
-          onProductsScrolled={handleProductsScrolled}
-          scrollToProducts={scrollToProducts}
-          onContactClick={handleContactClick}
-          onContactScrolled={handleContactScrolled}
-          scrollToContact={scrollToContact}
-          onCartClick={handleCartClick}
-          cartItemCount={totalItemCount}
+        <Route
+          path="/product/:productId"
+          element={
+            <ProductPage
+              onBackToHome={function () {
+                navigate("/");
+              }}
+              onHomeClick={handleHomeClick}
+              onProductsClick={handleProductsClick}
+              onContactClick={handleContactClick}
+              onCartClick={function () {
+                navigate("/cart");
+              }}
+              onAddToCart={handleAddToCart}
+              cartItemCount={totalItemCount}
+            />
+          }
         />
-      )}
-
-      <CartModal
-        isOpen={isCartOpen}
-        cartItems={cartItems}
-        onClose={handleCloseCart}
-        onIncreaseItem={handleIncreaseItem}
-        onDecreaseItem={handleDecreaseItem}
-        onRemoveItem={handleRemoveItem}
-      />
+        <Route
+          path="/cart"
+          element={
+            <CartPage
+              cartItems={cartItems}
+              itemCount={totalItemCount}
+              onHomeClick={handleHomeClick}
+              onProductsClick={handleProductsClick}
+              onContactClick={handleContactClick}
+              onCartClick={function () {
+                navigate("/cart");
+              }}
+              onIncreaseItem={handleIncreaseItem}
+              onDecreaseItem={handleDecreaseItem}
+              onRemoveItem={handleRemoveItem}
+            />
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
   );
 }
