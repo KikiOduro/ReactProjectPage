@@ -1,36 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 
 function Header(props) {
   return (
     <div className="header">
       <nav className="nav-links">
-        <button type="button" className="nav-link" onClick={props.onHomeClick}>
+        <Link to="/" className="nav-link">
           Home
-        </button>
-        <button
-          type="button"
-          className="nav-link"
-          onClick={props.onProductsClick}
-        >
+        </Link>
+        <Link to="/#new-arrivals-section" className="nav-link">
           Products
-        </button>
-        <button type="button" className="nav-link" onClick={props.onContactClick}>
+        </Link>
+        <Link to="/#contact-section" className="nav-link">
           Contact
-        </button>
-        <button type="button" className="nav-link" onClick={props.onCartClick}>
+        </Link>
+        <Link to="/cart" className="nav-link">
           Cart
-        </button>
+        </Link>
       </nav>
-      <div className="cart-icon-container" onClick={props.onCartClick}>
+      <Link to="/cart" className="cart-icon-container">
         <FiShoppingCart className="cart-icon" size={24} />
         {props.itemCount > 0 && (
           <span className="badge">{props.itemCount}</span>
         )}
-      </div>
+      </Link>
     </div>
   );
 }
+
 export default Header;
 
 

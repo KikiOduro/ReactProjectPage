@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
 import ProductDetails from "./ProductDetails";
 import QuantitySelector from "./QuantitySelector";
 import AddToCartButton from "./AddToCartButton";
 import sneakerImage from "../assets/single-product-removebg-preview.png";
-import { useParams } from "react-router-dom";
 import { getProductById } from "../data/products";
 
 function ProductPage(props) {
@@ -37,19 +37,44 @@ function ProductPage(props) {
   const [selectedColor, setSelectedColor] = useState(productColors[0]);
   const [selectedSize, setSelectedSize] = useState(productSizes[0]);
 
-  function handleIncrease() {
+  // function handleIncrease() {
+  //   setQuantity(quantity + 1);
+  // }
+
+  const handleIncrease = () => {
     setQuantity(quantity + 1);
   }
   
-  function handleDecrease() {
+  const handleDecrease = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
-    }
-  }
+    } 
+  // function handleDecrease() {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //   }
+  // }
   // function handleColorSelect(color){
   //   setSelectedColor(color);
   // }
-  function handleAddToCart() {
+  // function handleAddToCart() {
+  //   props.onAddToCart({
+  //     key: `${product.id}-${selectedSize}`,
+  //     id: product.id,
+  //     name: productName,
+  //     price: productPrice,
+  //     image: productImage,
+  //     size: selectedSize,
+  //     quantity: quantity,
+  //   });
+
+  //   setShowConfirmation(true);
+  //   setTimeout(function () {
+  //     setShowConfirmation(false);
+  //   }, 2000);
+  // }
+
+  const handleAddToCart = () => {
     props.onAddToCart({
       key: `${product.id}-${selectedSize}`,
       id: product.id,
@@ -64,28 +89,18 @@ function ProductPage(props) {
     setTimeout(function () {
       setShowConfirmation(false);
     }, 2000);
-  }
+  };  
 
   const totalItemCount = props.cartItemCount || 0;
 
   return (
     <div>
-      <Header
-        itemCount={totalItemCount}
-        onHomeClick={props.onHomeClick}
-        onProductsClick={props.onProductsClick}
-        onContactClick={props.onContactClick}
-        onCartClick={props.onCartClick}
-      />
+      <Header itemCount={totalItemCount} />
 
       <div className="page-container">
-        <button
-          type="button"
-          className="back-to-home-button"
-          onClick={props.onBackToHome}
-        >
-          ← Back to home
-        </button>
+        <Link to="/" className="back-to-home-button">
+          ← Back to Homepage
+        </Link>
 
         <div className="product-container">
           <div className="image-container">
@@ -163,10 +178,11 @@ function ProductPage(props) {
           </div>
         </div>
 
-        {/* <CartSummary itemCount={totalItemCount} total={cartTotal} /> */}
+
       </div>
     </div>
   );
+}
 }
 
 export default ProductPage;

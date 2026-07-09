@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import SafeImage from "./SafeImage";
 import heroImage from "../assets/Affiliates.jfif";
@@ -8,32 +9,10 @@ import { products } from "../data/products";
 function HomePage(props) {
   const categories = ["Black", "White", "Green", "Blue", "Pink"];
   const [activeCategory, setActiveCategory] = useState("Black");
-  const newArrivalsRef = useRef(null);
-  const contactRef = useRef(null);
-
-  useEffect(function () {
-    if (props.scrollToProducts && newArrivalsRef.current) {
-      newArrivalsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      props.onProductsScrolled();
-    }
-  }, [props.scrollToProducts, props.onProductsScrolled]);
-
-  useEffect(function () {
-    if (props.scrollToContact && contactRef.current) {
-      contactRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      props.onContactScrolled();
-    }
-  }, [props.scrollToContact, props.onContactScrolled]);
 
   return (
     <div>
-      <Header
-        itemCount={props.cartItemCount || 0}
-        onHomeClick={props.onHomeClick}
-        onProductsClick={props.onProductsClick}
-        onContactClick={props.onContactClick}
-        onCartClick={props.onCartClick}
-      />
+      <Header itemCount={props.cartItemCount || 0} />
 
       {/* ===== Hero Banner ===== */}
       <div className="hero-banner">
@@ -50,7 +29,7 @@ function HomePage(props) {
       </div>
 
       {/* ===== New Arrivals ===== */}
-      <div className="new-arrivals-section" ref={newArrivalsRef}>
+      <div className="new-arrivals-section" id="new-arrivals-section">
         <h2 className="new-arrivals-title">New Arrivals</h2>
 
         <div className="category-tabs">
@@ -73,20 +52,10 @@ function HomePage(props) {
         <div className="product-grid">
           {products.map(function (product) {
             return (
-              <div
+              <Link
                 key={product.id}
-                className="product-card"
-                role="button"
-                tabIndex={0}
-                onClick={function () {
-                  props.onSelectProduct(product);
-                }}
-                onKeyDown={function (event) {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    props.onSelectProduct(product);
-                  }
-                }}
+                to={`/product/${product.id}`}
+                className="product-card product-card-link"
               >
                 <SafeImage
                   src={product.image}
@@ -96,7 +65,7 @@ function HomePage(props) {
                 <p className="product-card-category">SHOES</p>
                 <p className="product-card-name">{product.name}</p>
                 <p className="product-card-price">${product.price.toFixed(2)}</p>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -133,7 +102,7 @@ function HomePage(props) {
         </div> */}
       </div>
 
-      <section className="contact-section" ref={contactRef}>
+      <section className="contact-section" id="contact-section">
         <div className="contact-section-inner">
           <p className="contact-eyebrow">CONTACT</p>
           <h2 className="contact-title">Get in touch</h2>

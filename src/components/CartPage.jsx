@@ -1,20 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function CartPage(props) {
-  const subtotal = props.cartItems.reduce(function (total, item) {
-    return total + item.price * item.quantity;
-  }, 0);
+  // const subtotal = props.cartItems.reduce(function (total, item) {
+  //   return total + item.price * item.quantity;
+  // }, 0);
+  const subTotal = props.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className="cart-page">
-      <Header
-        itemCount={props.itemCount}
-        onHomeClick={props.onHomeClick}
-        onProductsClick={props.onProductsClick}
-        onContactClick={props.onContactClick}
-        onCartClick={props.onCartClick}
-      />
+      <Header itemCount={props.itemCount} />
 
       <div className="cart-page-container">
         <h1 className="cart-page-title">Your Cart</h1>
@@ -25,9 +21,9 @@ function CartPage(props) {
         {props.cartItems.length === 0 ? (
           <div className="cart-page-empty">
             <p>Your cart is empty.</p>
-            <button type="button" className="cart-page-button" onClick={props.onProductsClick}>
+            <Link to="/#new-arrivals-section" className="cart-page-button">
               Browse products
-            </button>
+            </Link>
           </div>
         ) : (
           <div className="cart-page-grid">

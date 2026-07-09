@@ -1,9 +1,15 @@
 import React from "react";
 
-function renderStars(rating) {
-  return Array.from({ length: 5 }, function (_, index) {
+// function renderStars(rating) {
+//   return Array.from({ length: 5 }, function (_, index) {
+//     return index < Math.round(rating) ? "★" : "☆";
+//   }).join("");
+// }
+
+const renderStars = (rating) => {
+  return Array.from({ length: 5 }, (_, index) => {
     return index < Math.round(rating) ? "★" : "☆";
-  }).join("");
+  }).join("");  
 }
 
 function ProductDetails(props) {

@@ -5,9 +5,11 @@ function CartModal(props) {
     return null;
   }
 
-  const subtotal = props.cartItems.reduce(function (total, item) {
-    return total + item.price * item.quantity;
-  }, 0);
+  // const subtotal = props.cartItems.reduce(function (total, item) {
+  //   return total + item.price * item.quantity;
+  // }, 0);
+
+  const subtotal = props.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className="modal-overlay">
